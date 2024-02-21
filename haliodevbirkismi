@@ -1,0 +1,253 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MaasUygulama());
+}
+
+class MaasUygulama extends StatefulWidget {
+  const MaasUygulama({super.key});
+
+  @override
+  State<MaasUygulama> createState() => _MaasUygulamaState();
+}
+
+class _MaasUygulamaState extends State<MaasUygulama> {
+  TextEditingController idc = TextEditingController();
+  TextEditingController adc = TextEditingController();
+  TextEditingController bolum = TextEditingController();
+  TextEditingController maas = TextEditingController();
+  String cinsiyet = "";
+  List<Personel> PersonelListesi = [];
+  Personel? per;
+  int a = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.yellow,
+        ),
+        body: Container(
+          child: Column(
+            children: [
+              Container(
+                margin: EdgeInsets.symmetric(
+                  horizontal: 250,
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: TextField(
+                    controller: idc,
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                        hintText: "id girin"),
+                  ),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.symmetric(
+                  horizontal: 250,
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: TextField(
+                    controller: adc,
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                        hintText: "Ad Soyad girin"),
+                  ),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.symmetric(
+                  horizontal: 250,
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: TextField(
+                    controller: bolum,
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                        hintText: "Bölüm girin"),
+                  ),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.symmetric(
+                  horizontal: 250,
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: TextField(
+                    controller: maas,
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                        hintText: "Maas girin"),
+                  ),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.symmetric(
+                  horizontal: 250,
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [
+                      Text("Cinsiyet: "),
+                      Text("E "),
+                      Radio(
+                          value: "Erkek",
+                          groupValue: cinsiyet,
+                          onChanged: (value) {
+                            setState(() {
+                              cinsiyet = value!;
+                            });
+                          }),
+                      Text("K "),
+                      Radio(
+                          value: "Kadın",
+                          groupValue: cinsiyet,
+                          onChanged: (value) {
+                            setState(() {
+                              cinsiyet = value!;
+                            });
+                          })
+                    ],
+                  ),
+                ),
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: ElevatedButton(
+                  child: Text("Ekle"),
+                  onPressed: () {
+                    setState(() {
+
+
+                      PersonelListesi.add(per!);
+                      print(PersonelListesi.length);
+                    });
+                  },
+                ),
+              ),
+              Container(
+                child: Column(children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      child:Text(""),
+
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      child: Text(""),
+
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      child: Text(""),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      child: Text(""),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      child: Text(""),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      child: Text(""),
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: ElevatedButton(
+                            child: Text("Devamsızlık -1"),
+                            onPressed: () {
+                              setState(() {
+
+                              });
+                            },
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: ElevatedButton(
+                            child: Text("Devamsızlık +1"),
+                            onPressed: () {
+                              setState(() {
+
+
+
+                              });
+                            },
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ]),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class Personel {
+  String ? isim;
+  int? en;
+  int? boy;
+  double? birimfiyati;
+  Personel(String isim, int en, int boy, double birimfiyati) {
+    this.isim = isim;
+    this.en = en;
+    this.boy = boy;
+    this.birimfiyati = birimfiyati;
+
+  }
+  int AlanHesapla(){
+    return 100;
+  }
+  int CevreHesapla(){
+    return 100;
+  }
+
+}
